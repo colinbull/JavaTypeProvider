@@ -3,12 +3,14 @@
 module Tests =
     open FSharpx
 
-    [<Literal>]let jar = @"D:\Appdev\SimpleJar\out\production\SimpleJar\org\Echo.class"
-    [<Literal>]let ikvmPath = @"D:\Appdev\IKVM.TypeProvider\IKVM.TypeProvider\IKVM\bin\"
+    [<Literal>]let jar = @"D:\Appdev\IKVM.TypeProvider\SimpleJar\out\artifacts\SimpleJar.jar"
+    [<Literal>]let className = @"hello.HelloWorld"
 
-    type SimpleJar = FSharpx.IKVM<JarFile=jar, IKVMPath=ikvmPath>
+    type SimpleJar = FSharpx.IKVM<JarFile=jar, ClassNames=className>
     
-    let F = SimpleJar.org.Echo()
+    let F = SimpleJar.
+    
+    
     //SimpleJar.org.Echo()
     //type Echoer = SimpleJar.
        
