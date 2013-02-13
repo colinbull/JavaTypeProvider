@@ -8,7 +8,7 @@ module Tests =
 
     type SimpleJar = FSharpx.IKVM<JarFile=jar, ClassNames=className>
     
-    let F = SimpleJar.
+    let F = SimpleJar.HelloWorld()
     
     
     //SimpleJar.org.Echo()

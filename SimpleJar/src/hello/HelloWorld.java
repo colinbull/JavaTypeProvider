@@ -11,6 +11,10 @@ public class HelloWorld {
         this.name = name;
     }
 
+    public String Say(String value) {
+        return this.name + " " + value;
+    }
+
     @Override
     public String toString() {
         return "Hello " + name;
