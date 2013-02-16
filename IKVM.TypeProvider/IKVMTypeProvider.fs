@@ -72,8 +72,6 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
        ty
 
    let loader (typeName, jarFile ,classNames) =
-        let rtAss = Assembly.LoadFrom(config.RuntimeAssembly)
-        ikvm.runtime.Startup.addBootClassPathAssemby(rtAss)
         let urls = [|new java.net.URL("file:" + jarFile)|]
         let loader = new java.net.URLClassLoader(urls);
         let cl = Class.forName(classNames, true, loader)
@@ -83,11 +81,7 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
         t.AddMemberDelayed(fun _ -> toNest)
         t
 
-   do containerType.DefineStaticParameters(
-                         staticParams,
-                         (fun typeName [| :? string as jarFile ; :? string as classNames|] ->
-                              Helpers.memoize loader (typeName, jarFile, classNames)
-                         ))
+
 
    do System.AppDomain.CurrentDomain.add_AssemblyResolve(fun _ args ->
         let name = System.Reflection.AssemblyName(args.Name)
@@ -99,6 +93,11 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
         | None -> null
         )
 
+   do containerType.DefineStaticParameters(
+                         staticParams,
+                         (fun typeName [| :? string as jarFile ; :? string as classNames|] ->
+                              Helpers.memoize loader (typeName, jarFile, classNames)
+                         ))
 
    do this.AddNamespace(rootNamespace, [containerType]) 
     
