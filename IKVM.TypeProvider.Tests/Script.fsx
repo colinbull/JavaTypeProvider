@@ -1,13 +1,13 @@
 ﻿#r @"..\IKVM.TypeProvider\bin\Debug\IKVM.TypeProvider.dll"
-//#r @"..\IKVM.TypeProvider\IKVM\bin\IKVM.OpenJDK.Core.dll"
+#r @"..\IKVM.TypeProvider\IKVM\bin\IKVM.OpenJDK.Core.dll"
 
 
-[<Literal>]let jar = @"D:\Appdev\IKVM.TypeProvider\SimpleJar\out\artifacts\SimpleJar.jar"
-[<Literal>]let className = @"hello.HelloWorld"
+let[<Literal>] jar = @"D:\Appdev\IKVM.TypeProvider\SimpleJar\out\artifacts\SimpleJar.jar"
+let[<Literal>] ikvmPath = @"D:\Appdev\IKVM.TypeProvider\IKVM.TypeProvider\IKVM\bin\"
+let[<Literal>] className = @"hello.HelloWorld"
 
-type SimpleJar = FSharpx.IKVM<JarFile=jar, ClassNames=className>
-type HelloWorld = SimpleJar.HelloWorld
-let F = new HelloWorld("Foo")
+type SimpleJar = FSharpx.IKVMProvider<JarFile=jar, IKVMPath=ikvmPath>
+let F = new SimpleJar.HelloWorld("Colin")
 
 F.Say("Foo");
 F.toString()

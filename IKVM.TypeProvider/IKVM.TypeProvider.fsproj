@@ -43,7 +43,8 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProvidedTypes-headd.fs" />
+    <Compile Include="IKVM.fs" />
+    <Compile Include="ProvidedTypes-0.3.fs" />
     <Compile Include="IKVMTypeProvider.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
