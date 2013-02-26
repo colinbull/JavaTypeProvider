@@ -42,75 +42,22 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
             ProvidedStaticParameter("JarFile", typeof<string>)
             ProvidedStaticParameter("IKVMPath", typeof<string>, Path.Combine(config.ResolutionFolder, "IKVM"))
         ]
-   let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "IKVMProvider", Some(baseType), IsErased = false)
+   let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "IKVMProvider", Some(baseType))
    
-   let walkType (t : Type) =   
-       let ty = ProvidedTypeDefinition(t.Name, Some(t), IsErased = false, SuppressRelocation = false)
-       
-       let getParameters (m : MethodBase) =
-           m.GetParameters() 
-           |> Seq.map (fun pi -> ProvidedParameter(pi.Name, pi.ParameterType, pi.IsOut, pi.IsOptional))
-           |> Seq.toList
-   
-       let getMembers (mi : MemberInfo) =
-           match mi with
-           | :? MethodInfo as m ->  
-               ProvidedMethod(methodName = m.Name,
-                              parameters = getParameters(m), 
-                              returnType = m.ReturnType,
-                              InvokeCode = (fun args -> Expr.Call(args.Head, m, args.Tail))
-                              ) :> MemberInfo
-           | :? ConstructorInfo as c ->
-               ProvidedConstructor(getParameters c, 
-                                   InvokeCode = (fun args -> Expr.NewObject(c, args))
-                                   ) :> MemberInfo
-
-       let getMembers (t : Type) = 
-           t.GetMembers() |> Seq.map getMembers |> Seq.toList
-       
-       ty.AddMembersDelayed(fun () -> getMembers t)
-       ty.ConvertToGenerated(IO.Path.Combine(dir, t.Name + ".dll"))
-       ty
-   
-
    let loader (typeName, jarFile, ikvmPath) =
-        let bytes = IKVM.compile ikvmPath dir jarFile
-        let t = ProvidedTypeDefinition(thisAssembly, rootNamespace, typeName, Some(baseType), IsErased = false, SuppressRelocation = false)
-        let jarAssembly = Assembly.Load(bytes)
-        t.AddMembersDelayed(fun () -> 
-            [
-                for t in jarAssembly.GetExportedTypes() do
-                    yield walkType t
-            ]
-        )
+        this.RegisterProbingFolder(ikvmPath)
+        let assemblyPath = IKVM.compile ikvmPath dir jarFile
+        let t = ProvidedTypeDefinition(thisAssembly, rootNamespace, typeName, Some(baseType))
+        t.AddAssemblyTypesAsNestedTypesDelayed(fun () -> Assembly.LoadFrom(assemblyPath))
         t
-
-   let handler = System.ResolveEventHandler(fun _ args ->
-        let asmName = AssemblyName(args.Name)
-        // assuming that we reference only dll files
-        let expectedName = asmName.Name + ".dll"
-        let expectedLocation =
-            // we expect to find this assembly near the dll with type provider
-            IO.Path.Combine(dir, expectedName)
-        if IO.File.Exists expectedLocation then Assembly.LoadFrom expectedLocation else null
-        )
-   
-   do System.AppDomain.CurrentDomain.add_AssemblyResolve handler
 
    do containerType.DefineStaticParameters(
                          staticParams,
                          (fun typeName [| :? string as jarFile ; :? string as ikvmPath|] ->
                               Helpers.memoize loader (typeName, jarFile, ikvmPath)
                          ))
-      this.AddNamespace(rootNamespace, [containerType]) 
-
-   do
-        let path = dir + @"\GeneratedTypes.dll"
-        containerType.ConvertToGenerated(path)
-    
-   
-    
-                   
+   do this.AddNamespace(rootNamespace, [containerType]) 
+                
 [<TypeProviderAssembly>] 
 do()
 

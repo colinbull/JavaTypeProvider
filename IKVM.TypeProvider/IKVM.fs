@@ -58,17 +58,18 @@
 
     let private runIKVM ikvmPath outputPath jarFile =
         let outDll, args = getIKVMArgs outputPath jarFile
-        let errors = ref []
-        let exitCode = IKVM ikvmPath args (logError errors) logMsg
-
-        if exitCode = 0 
+        if File.Exists(outDll)
         then outDll
-        else failwithf "IVKMC ended with non-zero exitcode (Code: %d)\r\n%s" exitCode (String.Join("\r\n", !errors |> List.rev))
+        else
+            let errors = ref []
+            let exitCode = IKVM ikvmPath args (logError errors) logMsg
+
+            if exitCode = 0 
+            then outDll
+            else failwithf "IVKMC ended with non-zero exitcode (Code: %d)\r\n%s" exitCode (String.Join("\r\n", !errors |> List.rev))
     
     let compile ikvmPath outputPath jarFile =
         if not <| String.IsNullOrEmpty(jarFile)
-        then 
-            let dll = runIKVM ikvmPath outputPath jarFile
-            File.ReadAllBytes(dll)
+        then runIKVM ikvmPath outputPath jarFile
         else failwith "A jar/class file path must be given (wildcards accepted)"
         
