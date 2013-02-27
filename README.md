@@ -1,4 +1,4 @@
 IKVM.TypeProvider
 =================
 
-Just a toy implementation at the minute, to see what is possible with IKVMm
+Basic implementation of an IKVM type provider for F#
