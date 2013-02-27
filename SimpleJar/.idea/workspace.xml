@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Appdev\IKVM.TypeProvider\IKVM.TypeProvider.Tests\Library1.fs" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hello/HelloWorld.java" afterPath="$PROJECT_DIR$/src/hello/HelloWorld.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider.Tests/IKVM.TypeProvider.Tests.fsproj" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider.Tests/IKVM.TypeProvider.Tests.fsproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.TypeProvider.fsproj" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.TypeProvider.fsproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider.sln" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider.sln" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.fs" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.fs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVMTypeProvider.fs" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVMTypeProvider.fs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -83,7 +78,7 @@
       <file leaf-file-name="HelloWorld.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hello/HelloWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="62" selection-start="434" selection-end="434" vertical-scroll-proportion="0.7713787">
+            <state line="16" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.47469458">
               <folding />
             </state>
           </provider>
@@ -114,8 +109,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
+    <option name="x" value="1959" />
+    <option name="y" value="5" />
     <option name="width" value="1938" />
     <option name="height" value="1050" />
   </component>
@@ -341,7 +336,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
+    <frame x="1959" y="5" width="1938" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -456,7 +451,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hello/HelloWorld.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="62" selection-start="434" selection-end="434" vertical-scroll-proportion="0.7713787">
+        <state line="16" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.47469458">
           <folding />
         </state>
       </provider>

@@ -14,10 +14,10 @@ public class HelloWorld {
     public String Say(String value) {
         return this.name + " " + value;
     }
-//
-//    public String Close(){
-//        return "Bye";
-//    }
+
+    public String Close(){
+        return "Bye";
+    }
 
     @Override
     public String toString() {

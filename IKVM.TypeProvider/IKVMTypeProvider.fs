@@ -48,10 +48,11 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
    let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "IKVMProvider", Some(baseType))
    
    let invalidate key = (fun () ->
-        printfn "Invalidating IKVM Provider"
-        GlobalProvidedAssemblyElementsTable.theTable.Clear()
-        Cache.Instance.Remove(key) |> ignore
-        this.Invalidate()
+        if Cache.Instance.Remove(key) 
+        then 
+            printfn "Invalidating IKVM Provider"
+            GlobalProvidedAssemblyElementsTable.theTable.Clear()
+            this.Invalidate()
        )
 
    let loader (typeName, jarFile, ikvmPath) =
