@@ -6,13 +6,22 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" name="Default" comment="" />
+    <list default="true" id="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\Appdev\IKVM.TypeProvider\IKVM.TypeProvider.Tests\Library1.fs" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hello/HelloWorld.java" afterPath="$PROJECT_DIR$/src/hello/HelloWorld.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider.Tests/IKVM.TypeProvider.Tests.fsproj" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider.Tests/IKVM.TypeProvider.Tests.fsproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.TypeProvider.fsproj" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.TypeProvider.fsproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider.sln" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider.sln" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.fs" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVM.fs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVMTypeProvider.fs" afterPath="$PROJECT_DIR$/../IKVM.TypeProvider/IKVMTypeProvider.fs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="SimpleJar.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Echo.java" changelist="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" time="1360693636692" ignored="false" />
     <file path="/fragment.java" changelist="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" time="1360693556685" ignored="false" />
-    <file path="/Dummy.txt" changelist="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" time="1360793494710" ignored="false" />
-    <file path="/HelloWorld.java" changelist="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" time="1360793597673" ignored="false" />
+    <file path="/Dummy.txt" changelist="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" time="1361993743772" ignored="false" />
+    <file path="/HelloWorld.java" changelist="6ed7aeec-3ca7-4411-b886-a76d8bd9987f" time="1361993352427" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +36,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -62,6 +70,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -74,7 +83,7 @@
       <file leaf-file-name="HelloWorld.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hello/HelloWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="39" selection-start="277" selection-end="277" vertical-scroll-proportion="0.41975307">
+            <state line="26" column="62" selection-start="434" selection-end="434" vertical-scroll-proportion="0.7713787">
               <folding />
             </state>
           </provider>
@@ -136,7 +145,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -169,14 +178,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SimpleJar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SimpleJar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hello" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
@@ -315,14 +342,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32918552" sideWeight="0.49839914" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847533" sideWeight="0.49839914" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32918552" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
@@ -330,7 +357,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.67081445" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24466951" sideWeight="0.67152464" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -401,6 +428,20 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/hello/HelloWorld.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="36" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hello/HelloWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="39" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hello/HelloWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="16" selection-start="285" selection-end="285" vertical-scroll-proportion="0.0">
           <folding />
         </state>
@@ -415,7 +456,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hello/HelloWorld.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="39" selection-start="277" selection-end="277" vertical-scroll-proportion="0.41975307">
+        <state line="26" column="62" selection-start="434" selection-end="434" vertical-scroll-proportion="0.7713787">
           <folding />
         </state>
       </provider>
@@ -427,8 +468,8 @@
         <settings>
           <artifact-editor>
             <show-content>
-              <type id="library" />
               <type id="artifact" />
+              <type id="library" />
             </show-content>
           </artifact-editor>
           <last-edited>SimpleJar:jar</last-edited>

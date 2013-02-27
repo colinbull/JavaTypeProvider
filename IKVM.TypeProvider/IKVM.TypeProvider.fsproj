@@ -22,6 +22,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>bin\Debug\IKVM.TypeProvider.XML</DocumentationFile>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe</StartProgram>
+    <StartArguments>"D:\Appdev\IKVM.TypeProvider\IKVM.TypeProvider.Tests\IKVM.TypeProvider.Tests.fsproj"</StartArguments>
+    <StartWorkingDirectory>D:\Appdev\IKVM.TypeProvider\IKVM.TypeProvider.Tests</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,9 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>IKVM\bin\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />

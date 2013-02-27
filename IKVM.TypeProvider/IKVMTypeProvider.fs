@@ -25,14 +25,17 @@ module Helpers =
                 Cache.Instance.Add(n, temp)
                 temp
 
+    let watchForChanges invalidate (fileName:string) = 
+      let w = new FileSystemWatcher(Filter = Path.GetFileName(fileName), Path = Path.GetDirectoryName(fileName))
+      w.Changed.Add(fun _ -> invalidate())
+      w.EnableRaisingEvents <- true
+
 [<TypeProvider>]
 type public IKVMTypeProvider(config: TypeProviderConfig) as this = 
    inherit TypeProviderForNamespaces()
    
-   let debug msg =
-       System.Diagnostics.Debug.WriteLine(msg);
 
-   
+
    let thisAssembly = Assembly.GetExecutingAssembly()
    let rootNamespace = "FSharpx"
    let dir = IO.Path.GetDirectoryName(config.RuntimeAssembly)
@@ -44,19 +47,32 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
         ]
    let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "IKVMProvider", Some(baseType))
    
+   let invalidate key = (fun () ->
+        printfn "Invalidating IKVM Provider"
+        GlobalProvidedAssemblyElementsTable.theTable.Clear()
+        Cache.Instance.Remove(key) |> ignore
+        this.Invalidate()
+       )
+
    let loader (typeName, jarFile, ikvmPath) =
         this.RegisterProbingFolder(ikvmPath)
-        let assemblyPath = IKVM.compile ikvmPath dir jarFile
+        this.RegisterProbingFolder(Path.GetDirectoryName(jarFile))
+        let assemblyBytes = IKVM.compile ikvmPath config.TemporaryFolder jarFile
+        let assembly = Assembly.Load(assemblyBytes)
+        GlobalProvidedAssemblyElementsTable.theTable.[assembly] <- assemblyBytes
+
         let t = ProvidedTypeDefinition(thisAssembly, rootNamespace, typeName, Some(baseType))
-        t.AddAssemblyTypesAsNestedTypesDelayed(fun () -> Assembly.LoadFrom(assemblyPath))
+        t.AddAssemblyTypesAsNestedTypesDelayed(fun () -> assembly)
         t
 
    do containerType.DefineStaticParameters(
                          staticParams,
                          (fun typeName [| :? string as jarFile ; :? string as ikvmPath|] ->
+                              Helpers.watchForChanges (invalidate (typeName, jarFile, ikvmPath)) jarFile
                               Helpers.memoize loader (typeName, jarFile, ikvmPath)
                          ))
-   do this.AddNamespace(rootNamespace, [containerType]) 
+   do 
+      this.AddNamespace(rootNamespace, [containerType]) 
                 
 [<TypeProviderAssembly>] 
 do()

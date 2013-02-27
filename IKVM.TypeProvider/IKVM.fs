@@ -53,23 +53,22 @@
                        si.WorkingDirectory <- ikvmPath
                        si.FileName <- ikvmPath + "ikvmc.exe"
                        si.Arguments <- args
-                       //si.CreateNoWindow <- true
+                       si.CreateNoWindow <- true
                     ) TimeSpan.MaxValue errorF msgF
 
     let private runIKVM ikvmPath outputPath jarFile =
         let outDll, args = getIKVMArgs outputPath jarFile
-        if File.Exists(outDll)
-        then outDll
-        else
-            let errors = ref []
-            let exitCode = IKVM ikvmPath args (logError errors) logMsg
-
-            if exitCode = 0 
-            then outDll
-            else failwithf "IVKMC ended with non-zero exitcode (Code: %d)\r\n%s" exitCode (String.Join("\r\n", !errors |> List.rev))
+        let errors = ref []
+        let exitCode = IKVM ikvmPath args (logError errors) logMsg
+        if exitCode = 0 
+        then 
+            let bytes = File.ReadAllBytes(outDll)
+            File.Delete(outDll)
+            bytes
+        else failwithf "IVKMC ended with non-zero exitcode (Code: %d)\r\n%s" exitCode (String.Join("\r\n", !errors |> List.rev))
     
     let compile ikvmPath outputPath jarFile =
         if not <| String.IsNullOrEmpty(jarFile)
-        then runIKVM ikvmPath outputPath jarFile
+        then  runIKVM ikvmPath outputPath jarFile
         else failwith "A jar/class file path must be given (wildcards accepted)"
         
