@@ -1,4 +1,4 @@
-﻿namespace FSharpx
+﻿namespace IKVM
 
 open System
 open System.IO
@@ -37,7 +37,7 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
 
 
    let thisAssembly = Assembly.GetExecutingAssembly()
-   let rootNamespace = "FSharpx"
+   let rootNamespace = "IKVM"
    let dir = IO.Path.GetDirectoryName(config.RuntimeAssembly)
    let baseType = typeof<obj>
    let staticParams = 
@@ -58,7 +58,7 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
    let loader (typeName, jarFile, ikvmPath) =
         this.RegisterProbingFolder(ikvmPath)
         this.RegisterProbingFolder(Path.GetDirectoryName(jarFile))
-        let assemblyBytes = IKVM.compile ikvmPath config.TemporaryFolder jarFile
+        let assemblyBytes = IKVMCompiler.compile ikvmPath config.TemporaryFolder jarFile
         let assembly = Assembly.Load(assemblyBytes)
         GlobalProvidedAssemblyElementsTable.theTable.[assembly] <- assemblyBytes
 
