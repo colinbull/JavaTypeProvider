@@ -7,6 +7,7 @@ module Tests =
     
     type Jar = IKVM.IKVMProvider<JarFile=jar, IKVMPath=ikvmPath>
     type HW = Jar.hello.HelloWorld
+   
 
     [<EntryPoint>]
     let main(args) =

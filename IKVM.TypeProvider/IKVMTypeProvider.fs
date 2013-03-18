@@ -25,6 +25,11 @@ module Helpers =
                 Cache.Instance.Add(n, temp)
                 temp
 
+    let fullPath (config :TypeProviderConfig) path = 
+        if Path.IsPathRooted(path)
+        then path
+        else Path.Combine(config.ResolutionFolder, path)
+
     let watchForChanges invalidate (fileName:string) = 
       let w = new FileSystemWatcher(Filter = Path.GetFileName(fileName), Path = Path.GetDirectoryName(fileName))
       w.Changed.Add(fun _ -> invalidate())
@@ -33,8 +38,6 @@ module Helpers =
 [<TypeProvider>]
 type public IKVMTypeProvider(config: TypeProviderConfig) as this = 
    inherit TypeProviderForNamespaces()
-   
-
 
    let thisAssembly = Assembly.GetExecutingAssembly()
    let rootNamespace = "IKVM"
@@ -50,7 +53,6 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
    let invalidate key = (fun () ->
         if Cache.Instance.Remove(key) 
         then 
-            printfn "Invalidating IKVM Provider"
             GlobalProvidedAssemblyElementsTable.theTable.Clear()
             this.Invalidate()
        )
@@ -63,14 +65,15 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
         GlobalProvidedAssemblyElementsTable.theTable.[assembly] <- assemblyBytes
 
         let t = ProvidedTypeDefinition(thisAssembly, rootNamespace, typeName, Some(baseType))
-        t.AddAssemblyTypesAsNestedTypesDelayed(fun () -> assembly)
+        t.AddAssemblyTypesAsNestedTypesDelayed(fun _ -> assembly)
         t
 
    do containerType.DefineStaticParameters(
                          staticParams,
                          (fun typeName [| :? string as jarFile ; :? string as ikvmPath|] ->
-                              Helpers.watchForChanges (invalidate (typeName, jarFile, ikvmPath)) jarFile
-                              Helpers.memoize loader (typeName, jarFile, ikvmPath)
+                              let jar, ikvm = Helpers.fullPath config jarFile, Helpers.fullPath config ikvmPath
+                              Helpers.watchForChanges (invalidate (typeName, jar, ikvm)) jar
+                              Helpers.memoize loader (typeName, jar, ikvm)
                          ))
    do 
       this.AddNamespace(rootNamespace, [containerType]) 
