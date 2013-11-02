@@ -1,4 +1,4 @@
-﻿namespace IKVM
+﻿namespace Java
 
 open System
 open System.IO
@@ -25,19 +25,22 @@ module Helpers =
                 Cache.Instance.Add(n, temp)
                 temp
 
+    let fullPath (config :TypeProviderConfig) path = 
+        if Path.IsPathRooted(path)
+        then path
+        else Path.Combine(config.ResolutionFolder, path)
+
     let watchForChanges invalidate (fileName:string) = 
       let w = new FileSystemWatcher(Filter = Path.GetFileName(fileName), Path = Path.GetDirectoryName(fileName))
       w.Changed.Add(fun _ -> invalidate())
       w.EnableRaisingEvents <- true
 
 [<TypeProvider>]
-type public IKVMTypeProvider(config: TypeProviderConfig) as this = 
+type public JavaTypeProvider(config: TypeProviderConfig) as this = 
    inherit TypeProviderForNamespaces()
-   
-
 
    let thisAssembly = Assembly.GetExecutingAssembly()
-   let rootNamespace = "IKVM"
+   let rootNamespace = "Java"
    let dir = IO.Path.GetDirectoryName(config.RuntimeAssembly)
    let baseType = typeof<obj>
    let staticParams = 
@@ -45,12 +48,11 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
             ProvidedStaticParameter("JarFile", typeof<string>)
             ProvidedStaticParameter("IKVMPath", typeof<string>, Path.Combine(config.ResolutionFolder, "IKVM"))
         ]
-   let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "IKVMProvider", Some(baseType))
+   let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "JavaProvider", Some(baseType))
    
    let invalidate key = (fun () ->
         if Cache.Instance.Remove(key) 
         then 
-            printfn "Invalidating IKVM Provider"
             GlobalProvidedAssemblyElementsTable.theTable.Clear()
             this.Invalidate()
        )
@@ -63,14 +65,15 @@ type public IKVMTypeProvider(config: TypeProviderConfig) as this =
         GlobalProvidedAssemblyElementsTable.theTable.[assembly] <- assemblyBytes
 
         let t = ProvidedTypeDefinition(thisAssembly, rootNamespace, typeName, Some(baseType))
-        t.AddAssemblyTypesAsNestedTypesDelayed(fun () -> assembly)
+        t.AddAssemblyTypesAsNestedTypesDelayed(fun _ -> assembly)
         t
 
    do containerType.DefineStaticParameters(
                          staticParams,
                          (fun typeName [| :? string as jarFile ; :? string as ikvmPath|] ->
-                              Helpers.watchForChanges (invalidate (typeName, jarFile, ikvmPath)) jarFile
-                              Helpers.memoize loader (typeName, jarFile, ikvmPath)
+                              let jar, ikvm = Helpers.fullPath config jarFile, Helpers.fullPath config ikvmPath
+                              Helpers.watchForChanges (invalidate (typeName, jar, ikvm)) jar
+                              Helpers.memoize loader (typeName, jar, ikvm)
                          ))
    do 
       this.AddNamespace(rootNamespace, [containerType]) 

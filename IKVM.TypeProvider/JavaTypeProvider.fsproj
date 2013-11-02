@@ -8,9 +8,9 @@
     <ProjectGuid>6f97b823-4ac5-4264-a32f-f00f356377ad</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>IKVM.TypeProvider</RootNamespace>
-    <AssemblyName>IKVM.TypeProvider</AssemblyName>
+    <AssemblyName>JavaTypeProvider</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <Name>IKVM.TypeProvider</Name>
+    <Name>JavaTypeProvider</Name>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="IKVMCompiler.fs" />
     <Compile Include="ProvidedTypes.fs" />
-    <Compile Include="IKVMTypeProvider.fs" />
+    <Compile Include="JavaTypeProvider.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
   <PropertyGroup>

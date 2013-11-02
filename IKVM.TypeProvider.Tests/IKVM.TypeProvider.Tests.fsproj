@@ -36,8 +36,8 @@
     <Reference Include="IKVM.OpenJDK.Core">
       <HintPath>..\IKVM\bin\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.TypeProvider">
-      <HintPath>..\bin\IKVM.TypeProvider.dll</HintPath>
+    <Reference Include="JavaTypeProvider">
+      <HintPath>..\bin\JavaTypeProvider.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -48,6 +48,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MoreComplexProgram.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <PropertyGroup>
