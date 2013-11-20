@@ -1,4 +1,4 @@
-IKVM.TypeProvider
+JavaTypeProvider
 =================
 
-Basic implementation of an IKVM type provider for F#
+A type provider, which can consume and provide types defined as part of Java libraries (JARS).
