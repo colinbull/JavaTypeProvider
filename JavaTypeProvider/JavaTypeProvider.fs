@@ -48,7 +48,7 @@ type public JavaTypeProvider(config: TypeProviderConfig) as this =
             ProvidedStaticParameter("JarFile", typeof<string>)
             ProvidedStaticParameter("IKVMPath", typeof<string>, Path.Combine(config.ResolutionFolder, "IKVM"))
         ]
-   let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "JavaProvider", Some(baseType))
+   let containerType = ProvidedTypeDefinition(thisAssembly, rootNamespace, "JavaProvider", Some(baseType), IsErased = false)
    
    let invalidate key = (fun () ->
         if Cache.Instance.Remove(key) 
@@ -64,8 +64,8 @@ type public JavaTypeProvider(config: TypeProviderConfig) as this =
         let assembly = Assembly.Load(assemblyBytes)
         GlobalProvidedAssemblyElementsTable.theTable.[assembly] <- assemblyBytes
 
-        let t = ProvidedTypeDefinition(thisAssembly, rootNamespace, typeName, Some(baseType))
-        t.AddAssemblyTypesAsNestedTypesDelayed(fun _ -> assembly)
+        let t = ProvidedTypeDefinition(thisAssembly, rootNamespace, typeName, Some(baseType), IsErased = false)
+        t.AddAssemblyTypesAsNestedTypesDelayed (fun _ -> assembly) false
         t
 
    do containerType.DefineStaticParameters(
