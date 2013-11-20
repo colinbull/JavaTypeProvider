@@ -835,7 +835,7 @@ type ProvidedTypeDefinition(container:TypeContainer,className : string, baseType
     member this.AddMember(m:MemberInfo) = this.AddMembers [m]    
     member this.AddMemberDelayed(m : unit -> #MemberInfo) = this.AddMembersDelayed(fun () -> [m()])
 
-    member this.AddAssemblyTypesAsNestedTypesDelayed (assemblyf : unit -> System.Reflection.Assembly)  = 
+    member this.AddAssemblyTypesAsNestedTypesDelayed (assemblyf : unit -> System.Reflection.Assembly) erased  = 
             let bucketByPath nodef tipf (items: (string list * 'Value) list) = 
                 // Find all the items with an empty key list and call 'tipf' 
                 let tips = 
@@ -866,7 +866,7 @@ type ProvidedTypeDefinition(container:TypeContainer,className : string, baseType
                     types 
                     |> bucketByPath
                         (fun namespaceComponent typesUnderNamespaceComponent -> 
-                            let t = ProvidedTypeDefinition(namespaceComponent, baseType = Some typeof<obj>)
+                            let t = ProvidedTypeDefinition(namespaceComponent, baseType = Some typeof<obj>, IsErased = erased)
                             t.AddMembers (loop typesUnderNamespaceComponent)
                             (t :> Type))
                         (fun ty -> ty)
