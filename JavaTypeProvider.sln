@@ -5,6 +5,18 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "JavaTypeProvider", "JavaTypeProvider\JavaTypeProvider.fsproj", "{6F97B823-4AC5-4264-A32F-F00F356377AD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{797A0F63-6EDA-4FAE-94C4-39919D6E16C3}"
+	ProjectSection(SolutionItems) = preProject
+		build.cmd = build.cmd
+		build.fsx = build.fsx
+		JavaTypeProvider.nuspec = JavaTypeProvider.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0D338574-E39F-4690-A83F-E5844AB5D8B0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +27,6 @@ Global
 		{6F97B823-4AC5-4264-A32F-F00F356377AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F97B823-4AC5-4264-A32F-F00F356377AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F97B823-4AC5-4264-A32F-F00F356377AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{916DC8F0-B476-49FA-9698-1F0F375423ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{916DC8F0-B476-49FA-9698-1F0F375423ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{916DC8F0-B476-49FA-9698-1F0F375423ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{916DC8F0-B476-49FA-9698-1F0F375423ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

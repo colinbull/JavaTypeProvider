@@ -51,6 +51,7 @@
     <Compile Include="ProvidedTypes.fs" />
     <Compile Include="JavaTypeProvider.fs" />
     <None Include="Script.fsx" />
+    <Compile Include="AssemblyInfo.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
