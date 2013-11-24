@@ -68,6 +68,8 @@ test-results
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 packages/
+Samples/Netty/*
+Samples/Neo4[jJ]/*
 nuget-key.txt
 
 # Visual C++ cache files
