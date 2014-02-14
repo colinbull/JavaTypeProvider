@@ -39,7 +39,7 @@
 
     let private getIKVMArgs outputPath (jarFile : string) = 
         let outDll = Path.Combine(outputPath, getAssemblyName jarFile)
-        outDll, sprintf "-target:library -out:%s %s" outDll jarFile
+        outDll, sprintf "-target:library -out:\"%s\" \"%s\"" outDll jarFile
     
     let private logError errs msg =
         errs := msg :: (!errs)
